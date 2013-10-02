@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="EmberStart PLEASE RENAME!" default="properties" basedir=".">
+<project name="Campaign Prioritization" default="properties" basedir=".">
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties"></taskdef> 
 	
@@ -63,6 +63,7 @@
     	<!-- Create a single file for all the Handlebars templates -->
     	<concat destfile="${dir.build.current}/template/application.handlebars" append="true">
             <fileset dir="${dir.src}/app/template" includes="**/*.handlebars"/>
+            <fileset dir="${dir.src}/app/template" includes="**/*.hb"/>
         </concat>
         <echo>Finished.</echo>
     </target>
@@ -122,7 +123,7 @@
     </target>
 	
 	<!-- INSERT LIB SCRIPT TAGS -->
-    <target name="insert-lib-script-tags">
+    <target name="insert-lib-script-tags" depends="properties">
     	<sequential>
     		<antcall target="create-lib-script-tags" />
     		<loadfile property="lib.tags" srcfile="${file.lib-script-tags}" />
@@ -220,17 +221,8 @@
 
 
     <!-- BUILD -->
-    <target name="build"
-		depends="
-    		version, 
-    		properties, 
-    		create_build,
-    		jshint, 
-    		consolidate, 
-    		minify, 
-    		consolidate-lib, 
-    		minify-lib,
-    		finish-build"/>
+    <target name="build" depends="version, properties, create_build, jshint, consolidate, minify, consolidate-lib, minify-lib, finish-build">
+    </target>
 	
     <!-- DEBUG -->
     <target name="debug" 
