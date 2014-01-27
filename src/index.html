@@ -6,21 +6,18 @@
 
 	<link href="css/style.css" rel="stylesheet" type="text/css">
     
-	<script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="lib/handlebars-1.0.0-rc.4.js"></script>
-	<script type="text/javascript" src="lib/ember-1.0.0-rc.6.js"></script>
+	<script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="lib/handlebars-1.1.2.js"></script>
+	<script type="text/javascript" src="lib/ember-1.3.1.js"></script>
 	@lib.js@
     
 </head>
 <body id="app">
 <script type="text/javascript">
 
-$(function()
-{
-	$.get('template/application.handlebars', function(data)
-	{
-        $(data).filter('script[type="text/x-handlebars"]').each(function(index)
-        {
+$(function() {
+	$.get('template/application.hb', function(data) {
+        $(data).filter('script[type="text/x-handlebars"]').each(function(index) {
             Ember.TEMPLATES[$(this).attr('data-template-name')] = Ember.Handlebars.compile($(this).html());
         });
         
